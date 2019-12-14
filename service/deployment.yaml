@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-test
+  namespace: service-test
+spec:
+  selector:
+    matchLabels:
+      run: service-example
+  replicas: 20
+  template:
+    metadata:
+      labels:
+        run: service-example
+    spec:
+      containers:
+        - name: service-test
+          image: gcr.io/google-samples/node-hello:1.0
+          ports:
+            - containerPort: 8080
+              protocol: TCP  
