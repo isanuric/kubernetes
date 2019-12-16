@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: web
+  name: web
+  namespace: hallo-world
+spec:
+  clusterIP: 10.111.245.41
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 31118
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: web
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
